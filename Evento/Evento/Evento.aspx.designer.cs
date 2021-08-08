@@ -15,6 +15,15 @@ namespace Evento
     {
 
         /// <summary>
+        /// lblmsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblmsg;
+
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -33,13 +42,40 @@ namespace Evento
         protected global::System.Web.UI.WebControls.TextBox txtDescricao;
 
         /// <summary>
-        /// txtdata control.
+        /// txtData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtdata;
+        protected global::System.Web.UI.WebControls.TextBox txtData;
+
+        /// <summary>
+        /// txtQtdPessoas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtQtdPessoas;
+
+        /// <summary>
+        /// txtQtdMaxPermitida control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtQtdMaxPermitida;
+
+        /// <summary>
+        /// txtValorPorPessoa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtValorPorPessoa;
 
         /// <summary>
         /// btnCadastrar control.
@@ -49,14 +85,5 @@ namespace Evento
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCadastrar;
-
-        /// <summary>
-        /// lblmsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg;
     }
 }

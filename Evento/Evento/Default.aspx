@@ -11,7 +11,6 @@
             $("#modalDados").modal('hide');
         }
     </script>
-    <!-- /.modal -->
     <div class="modal fade" id="modalMsg">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -32,13 +31,11 @@
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
                 </div>
             </div>
-            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
     </div>
     <form runat="server">
-        <asp:GridView ID="GVViagem" runat="server" CellPadding="4" CssClass="table" ForeColor="#333333"
-            GridLines="None" AutoGenerateColumns="False" OnRowCommand="GVViagem_RowCommand">
+        <asp:GridView ID="GVEventos" runat="server" CellPadding="4" CssClass="table" ForeColor="#333333"
+            GridLines="None" AutoGenerateColumns="False" OnRowCommand="GVVagas_RowCommand" DataKeyNames="Id" DataSourceID="SqlDataSource1">
             <AlternatingRowStyle BackColor="White" />
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -51,18 +48,14 @@
             <SortedDescendingCellStyle BackColor="#E9EBEF" />
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
             <Columns>
-                <asp:BoundField DataField="Id" HeaderText="ID" />
-                <asp:BoundField DataField="Descricao" HeaderText="DESCRICAO" />
-                <asp:BoundField DataField="Data" HeaderText="DATA" />
-                <asp:TemplateField HeaderText="Ações">
-                    <ItemTemplate>
-                        <asp:LinkButton runat="server" ID="btnAlterarMidia" CommandName="ALTERAR"
-                            CommandArgument='<%# Eval("Id") %>' CssClass="btn btn btn-info" Text="Alterar" />
-                        <asp:LinkButton runat="server" ID="btnExcluirMidia" CommandName="EXCLUIR"
-                            CommandArgument='<%# Eval("Id") %>' CssClass="btn btn btn-primary" Text="Excluir" />
-                    </ItemTemplate>
-                </asp:TemplateField>
+                <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
+                <asp:BoundField DataField="Descricao" HeaderText="Descricao" SortExpression="Descricao" />
+                <asp:BoundField DataField="Data" HeaderText="Data" SortExpression="Data" />
+                <asp:BoundField DataField="QtdPessoas" HeaderText="QtdPessoas" SortExpression="QtdPessoas" />
+                <asp:BoundField DataField="QtdMaxPermitida" HeaderText="QtdMaxPermitida" SortExpression="QtdMaxPermitida" />
+                <asp:BoundField DataField="ValorPorPessoa" HeaderText="ValorPorPessoa" SortExpression="ValorPorPessoa" />
             </Columns>
         </asp:GridView>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:EventoDBConnectionString %>" SelectCommand="SELECT * FROM [TB_Evento]"></asp:SqlDataSource>
     </form>
 </asp:Content>
