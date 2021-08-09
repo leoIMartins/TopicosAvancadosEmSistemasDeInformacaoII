@@ -23,76 +23,67 @@ namespace Evento
             string data = txtData.Text;
             int qtdPessoas = Convert.ToInt32(txtQtdPessoas.Text);
             int qtdMaxPermitida = Convert.ToInt32(txtQtdMaxPermitida.Text);
-            decimal valor = Convert.ToDecimal(txtValorPorPessoa.Text);
+            decimal valorPorPessoa = Convert.ToDecimal(txtValorPorPessoa.Text);
             TB_Evento te = new TB_Evento()
             {
-                NOME_ORGAO = descricao,
-                SIGLA_ORGAO = sigla,
-                APROVADA = aprovadas,
-                DISTRIBUIDA = qtdMaxPermitida,
-                OCUPADA = valor,
-                VAGAS = vagasDesocupadas
+                Descricao = descricao,
+                Data = Convert.ToDateTime(data),
+                QtdPessoas= qtdPessoas,
+                QtdMaxPermitida = qtdMaxPermitida,
             };
-            dbcargosvagosEntities contextVagas = new dbcargosvagosEntities();
+            EventoDBEntities contextEvento = new EventoDBEntities();
 
-            string valor = Request.QueryString["orgao"];
+            string valor = Request.QueryString["Id"];
 
             if (String.IsNullOrEmpty(valor))
             {
-                contextVagas.TB_Evento.Add(te);
+                contextEvento.TB_Evento.Add(te);
                 lblmsg.Text = "Registro Inserido!";
                 Clear();
             }
             else
             {
                 int id = Convert.ToInt32(valor);
-                TB_Evento vagas = contextVagas.TB_Evento.First(v => v.ORGAO == id);
-                vagas.NOME_MES = te.NOME_MES;
-                vagas.ORGAO = te.ORGAO;
-                vagas.NOME_ORGAO = te.NOME_ORGAO;
-                vagas.SIGLA_ORGAO = te.SIGLA_ORGAO;
-                vagas.APROVADA = te.APROVADA;
-                vagas.DISTRIBUIDA = te.DISTRIBUIDA;
-                vagas.OCUPADA = te.OCUPADA;
-                vagas.VAGAS = te.VAGAS;
+                TB_Evento eventos = contextEvento.TB_Evento.First(ev => ev.Id == id);
+                eventos.Id = te.Id;
+                eventos.Descricao = te.Descricao;
+                eventos.Data = te.Data;
+                eventos.QtdPessoas = te.QtdPessoas;
+                eventos.QtdMaxPermitida = te.QtdMaxPermitida;
+                eventos.ValorPorPessoa = te.ValorPorPessoa;
                 lblmsg.Text = "Registro Alterado";
             }
-            contextVagas.SaveChanges();
+            contextEvento.SaveChanges();
         }
 
         private void Clear()
         {
-            txtMes.Text = "";
-            txtOrgao.Text = "";
-            txtNomeOrgao.Text = "";
-            txtSigla.Text = "";
-            txtAprovadas.Text = "";
-            txtDistribuidas.Text = "";
-            txtOcupadas.Text = "";
-            txtMes.Focus();
+            txtDescricao.Text = "";
+            txtData.Text = "";
+            txtQtdPessoas.Text = "";
+            txtQtdMaxPermitida.Text = "";
+            txtValorPorPessoa.Text = "";
+            txtDescricao.Focus();
         }
 
         private void CarregarDadosPagina()
         {
-            string valor = Request.QueryString["orgao"];
-            int orgao = 0;
-            TB_Evento vagas = new TB_Evento();
+            string valor = Request.QueryString["Id"];
+            int id = 0;
+            TB_Evento eventos = new TB_Evento();
 
 
             if (!String.IsNullOrEmpty(valor))
             {
-                dbcargosvagosEntities contextCamisetas = new dbcargosvagosEntities();
-                orgao = Convert.ToInt32(valor);
-                vagas = contextCamisetas.TB_Evento.First(v => v.ORGAO == orgao);
+                EventoDBEntities contextEventos = new EventoDBEntities();
+                id = Convert.ToInt32(valor);
+                eventos = contextEventos.TB_Evento.First(ev => ev.Id == id);
 
-                txtMes.Text = vagas.NOME_MES;
-                txtOrgao.Text = vagas.ORGAO.ToString();
-                txtOrgao.ReadOnly = true;
-                txtNomeOrgao.Text = vagas.NOME_ORGAO;
-                txtSigla.Text = vagas.SIGLA_ORGAO;
-                txtAprovadas.Text = vagas.APROVADA.ToString();
-                txtDistribuidas.Text = vagas.DISTRIBUIDA.ToString();
-                txtOcupadas.Text = vagas.OCUPADA.ToString();
+                txtDescricao.Text = eventos.Descricao;
+                txtData.Text = eventos.Data.ToString();
+                txtQtdPessoas.Text = eventos.QtdPessoas.ToString();
+                txtQtdMaxPermitida.Text = eventos.QtdMaxPermitida.ToString();
+                txtValorPorPessoa.Text = eventos.ValorPorPessoa.ToString();
             }
         }
     }

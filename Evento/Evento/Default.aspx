@@ -35,7 +35,7 @@
     </div>
     <form runat="server">
         <asp:GridView ID="GVEventos" runat="server" CellPadding="4" CssClass="table" ForeColor="#333333"
-            GridLines="None" AutoGenerateColumns="False" OnRowCommand="GVVagas_RowCommand" DataKeyNames="Id" DataSourceID="SqlDataSource1">
+            GridLines="None" AutoGenerateColumns="False" OnRowCommand="GVEventos_RowCommand" DataKeyNames="Id" DataSourceID="SqlDataSource1">
             <AlternatingRowStyle BackColor="White" />
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -56,6 +56,6 @@
                 <asp:BoundField DataField="ValorPorPessoa" HeaderText="ValorPorPessoa" SortExpression="ValorPorPessoa" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:EventoDBConnectionString %>" SelectCommand="SELECT * FROM [TB_Evento]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:EventoDBConnectionString %>" SelectCommand="SELECT [Id], [Descricao], [Data], [QtdPessoas], [QtdMaxPermitida], [ValorPorPessoa] FROM [TB_Evento]"></asp:SqlDataSource>
     </form>
 </asp:Content>
