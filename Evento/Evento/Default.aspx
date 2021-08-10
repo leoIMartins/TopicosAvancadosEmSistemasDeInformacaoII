@@ -35,7 +35,7 @@
     </div>
     <form runat="server">
         <asp:GridView ID="GVEventos" runat="server" CellPadding="4" CssClass="table" ForeColor="#333333"
-            GridLines="None" AutoGenerateColumns="False" OnRowCommand="GVEventos_RowCommand" DataKeyNames="Id" DataSourceID="SqlDataSource1">
+            GridLines="None" OnRowCommand="GVEventos_RowCommand">
             <AlternatingRowStyle BackColor="White" />
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -47,15 +47,6 @@
             <SortedAscendingHeaderStyle BackColor="#6D95E1" />
             <SortedDescendingCellStyle BackColor="#E9EBEF" />
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
-            <Columns>
-                <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
-                <asp:BoundField DataField="Descricao" HeaderText="Descricao" SortExpression="Descricao" />
-                <asp:BoundField DataField="Data" HeaderText="Data" SortExpression="Data" />
-                <asp:BoundField DataField="QtdPessoas" HeaderText="QtdPessoas" SortExpression="QtdPessoas" />
-                <asp:BoundField DataField="QtdMaxPermitida" HeaderText="QtdMaxPermitida" SortExpression="QtdMaxPermitida" />
-                <asp:BoundField DataField="ValorPorPessoa" HeaderText="ValorPorPessoa" SortExpression="ValorPorPessoa" />
-            </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:EventoDBConnectionString %>" SelectCommand="SELECT [Id], [Descricao], [Data], [QtdPessoas], [QtdMaxPermitida], [ValorPorPessoa] FROM [TB_Evento]"></asp:SqlDataSource>
     </form>
 </asp:Content>
