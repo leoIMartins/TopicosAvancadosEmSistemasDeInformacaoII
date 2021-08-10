@@ -18,7 +18,7 @@ namespace Evento
         {
             EventoDBEntities context = new EventoDBEntities();
             List<TB_Evento> lstEventos = context.TB_Evento.ToList<TB_Evento>();
-
+            
             GVEventos.DataSource = lstEventos;
             GVEventos.DataBind();
         }
@@ -33,7 +33,7 @@ namespace Evento
 
             if (e.CommandName == "ALTERAR")
             {
-                Response.Redirect("Eventos.aspx?id=" + id);
+                Response.Redirect("Evento.aspx?id=" + id);
             }
             else if (e.CommandName == "EXCLUIR")
             {

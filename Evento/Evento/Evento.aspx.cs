@@ -30,6 +30,7 @@ namespace Evento
                 Data = Convert.ToDateTime(data),
                 QtdPessoas= qtdPessoas,
                 QtdMaxPermitida = qtdMaxPermitida,
+                ValorPorPessoa = valorPorPessoa 
             };
             EventoDBEntities contextEvento = new EventoDBEntities();
 
@@ -45,7 +46,7 @@ namespace Evento
             {
                 int id = Convert.ToInt32(valor);
                 TB_Evento eventos = contextEvento.TB_Evento.First(ev => ev.Id == id);
-                eventos.Id = te.Id;
+                eventos.Id = id;
                 eventos.Descricao = te.Descricao;
                 eventos.Data = te.Data;
                 eventos.QtdPessoas = te.QtdPessoas;
