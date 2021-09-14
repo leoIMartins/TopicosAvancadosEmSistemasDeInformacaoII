@@ -48,12 +48,19 @@ namespace ProjCursoWEBDotNetCoreMVC.Controllers
         {
             var c = new Curso();
             var alunos = _context.Aluno.ToList();
+            var disciplinas = _context.Disciplina.ToList();
 
             c.Alunos = new List<SelectListItem>();
+            c.Disciplinas = new List<SelectListItem>();
 
             foreach (var alu in alunos)
             {
                 c.Alunos.Add(new SelectListItem { Text = alu.Nome, Value = alu.Id.ToString() });
+            }
+
+            foreach (var dis in disciplinas)
+            {
+                c.Disciplinas.Add(new SelectListItem { Text = dis.Descricao, Value = dis.Id.ToString() });
             }
 
             return View(c);
@@ -70,6 +77,10 @@ namespace ProjCursoWEBDotNetCoreMVC.Controllers
             int _alunoId = int.Parse(Request.Form["Aluno"].ToString());
             var aluno = _context.Aluno.FirstOrDefault(a => a.Id == _alunoId);
             curso.Aluno = aluno;
+
+            int _disciplinaId = int.Parse(Request.Form["Disciplina"].ToString());
+            var disciplina = _context.Disciplina.FirstOrDefault(d => d.Id == _disciplinaId);
+            curso.Disciplina = disciplina;
 
             if (ModelState.IsValid)
             {
@@ -98,7 +109,17 @@ namespace ProjCursoWEBDotNetCoreMVC.Controllers
             {
                 curso.Alunos.Add(new SelectListItem { Text = alu.Nome, Value = alu.Id.ToString() });
             }
+            //////////////////////////////////////////////////////////////
+            curso = _context.Curso.Include(d => d.Disciplina).First(e => e.Id == id);
 
+            var disciplinas = _context.Disciplina.ToList();
+
+            curso.Disciplinas = new List<SelectListItem>();
+
+            foreach (var dis in disciplinas)
+            {
+                curso.Disciplinas.Add(new SelectListItem { Text = dis.Descricao, Value = dis.Id.ToString() });
+            }
             //var curso = await _context.Curso.FindAsync(id);
             if (curso == null)
             {
@@ -122,6 +143,10 @@ namespace ProjCursoWEBDotNetCoreMVC.Controllers
             int _alunoId = int.Parse(Request.Form["Aluno"].ToString());
             var aluno = _context.Aluno.FirstOrDefault(a => a.Id == _alunoId);
             curso.Aluno = aluno;
+
+            int _disciplinaId = int.Parse(Request.Form["Disciplina"].ToString());
+            var disciplina = _context.Disciplina.FirstOrDefault(d => d.Id == _disciplinaId);
+            curso.Disciplina = disciplina;
 
             if (ModelState.IsValid)
             {
