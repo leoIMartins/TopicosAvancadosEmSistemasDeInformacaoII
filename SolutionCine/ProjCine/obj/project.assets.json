@@ -7335,11 +7335,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\leona\\Desktop\\caio\\TopicosAvancados_II_2021\\SolutionCine\\ProjCine\\ProjCine.csproj",
+      "projectUniqueName": "C:\\TopicosAvancadosEmSistemasDeInformacaoII\\SolutionCine\\ProjCine\\ProjCine.csproj",
       "projectName": "ProjCine",
-      "projectPath": "C:\\Users\\leona\\Desktop\\caio\\TopicosAvancados_II_2021\\SolutionCine\\ProjCine\\ProjCine.csproj",
+      "projectPath": "C:\\TopicosAvancadosEmSistemasDeInformacaoII\\SolutionCine\\ProjCine\\ProjCine.csproj",
       "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\leona\\Desktop\\caio\\TopicosAvancados_II_2021\\SolutionCine\\ProjCine\\obj\\",
+      "outputPath": "C:\\TopicosAvancadosEmSistemasDeInformacaoII\\SolutionCine\\ProjCine\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config",

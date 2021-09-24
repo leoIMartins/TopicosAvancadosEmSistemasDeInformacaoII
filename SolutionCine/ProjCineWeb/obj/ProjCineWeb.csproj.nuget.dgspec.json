@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\leona\\Desktop\\caio\\TopicosAvancados_II_2021\\SolutionCine\\ProjCineWeb\\ProjCineWeb.csproj": {}
+    "C:\\TopicosAvancadosEmSistemasDeInformacaoII\\SolutionCine\\ProjCineWeb\\ProjCineWeb.csproj": {}
   },
   "projects": {
-    "C:\\Users\\leona\\Desktop\\caio\\TopicosAvancados_II_2021\\SolutionCine\\ProjCineWeb\\ProjCineWeb.csproj": {
+    "C:\\TopicosAvancadosEmSistemasDeInformacaoII\\SolutionCine\\ProjCineWeb\\ProjCineWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\leona\\Desktop\\caio\\TopicosAvancados_II_2021\\SolutionCine\\ProjCineWeb\\ProjCineWeb.csproj",
+        "projectUniqueName": "C:\\TopicosAvancadosEmSistemasDeInformacaoII\\SolutionCine\\ProjCineWeb\\ProjCineWeb.csproj",
         "projectName": "ProjCineWeb",
-        "projectPath": "C:\\Users\\leona\\Desktop\\caio\\TopicosAvancados_II_2021\\SolutionCine\\ProjCineWeb\\ProjCineWeb.csproj",
+        "projectPath": "C:\\TopicosAvancadosEmSistemasDeInformacaoII\\SolutionCine\\ProjCineWeb\\ProjCineWeb.csproj",
         "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\leona\\Desktop\\caio\\TopicosAvancados_II_2021\\SolutionCine\\ProjCineWeb\\obj\\",
+        "outputPath": "C:\\TopicosAvancadosEmSistemasDeInformacaoII\\SolutionCine\\ProjCineWeb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config",

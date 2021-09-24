@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4IOiKLvscGjFaZh+mZFdm6GezpCZL1d0EcYL/rOg9OcZEgSMq9iL0Y/HS/hjdyo5TRyMF9lVSs/RoVTO6SUOaQ==",
+  "dgSpecHash": "rpEGTaKylonPnd8wlVl3QxqX5MpOm/B+izcqdxngWAI/i0g7LWAXGZvVwL3bndQ6p2K/45Nr0XgeSydRG8VHHA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\leona\\Desktop\\caio\\TopicosAvancados_II_2021\\SolutionCine\\ProjCine\\ProjCine.csproj",
+  "projectFilePath": "C:\\TopicosAvancadosEmSistemasDeInformacaoII\\SolutionCine\\ProjCine\\ProjCine.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\leona\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\leona\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
