@@ -22,7 +22,11 @@ namespace ProjCineWeb.Controllers
         // GET: Ingressoes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Ingresso.ToListAsync());
+            var cli = await _context.Ingresso.Include(c => c.Cliente).ToListAsync();
+            var film = await _context.Ingresso.Include(f => f.Filme).ToListAsync();
+
+            //return View(await _context.Ingresso.ToListAsync());
+            return View(cli);
         }
 
         // GET: Ingressoes/Details/5
