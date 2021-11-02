@@ -19,6 +19,9 @@
                 @Html.DisplayNameFor(model => model.Setor)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Jogo)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Imagem)
             </th>
             <th></th>
@@ -32,6 +35,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Setor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Jogo.ToString())
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Imagem)

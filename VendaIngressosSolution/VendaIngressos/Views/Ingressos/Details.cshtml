@@ -10,23 +10,35 @@
     <h4>Ingresso</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Preco)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Preco)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Setor)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Setor)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Jogo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Jogo.ToString())
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Imagem)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Imagem)
+        </dd>
+        <dt class="col-sm-2">
+            Imagem
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@("~/image/" + Model.Imagem)" asp-append-version="true" width="200px" height="200px" />
         </dd>
     </dl>
 </div>

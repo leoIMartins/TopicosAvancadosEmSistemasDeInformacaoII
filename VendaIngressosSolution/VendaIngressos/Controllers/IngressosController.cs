@@ -53,7 +53,7 @@ namespace VendaIngressos.Controllers
         public IActionResult Create()
         {
             var i = new Ingresso();
-            var jogos = _context.Jogo.ToList();
+            var jogos = _context.Jogo.Include(a => a.TimeA).Include(b => b.TimeB).ToList();
 
             i.Jogos = new List<SelectListItem>();
 
