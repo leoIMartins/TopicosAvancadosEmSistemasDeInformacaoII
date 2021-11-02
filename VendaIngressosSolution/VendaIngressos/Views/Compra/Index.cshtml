@@ -12,12 +12,23 @@
 <table class="table">
     <thead>
         <tr>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Torcedor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ingresso)
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Torcedor.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ingresso.Id)
+            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

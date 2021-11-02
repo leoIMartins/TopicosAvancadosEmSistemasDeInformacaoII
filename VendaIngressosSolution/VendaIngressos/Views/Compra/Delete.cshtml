@@ -11,6 +11,18 @@
     <h4>Compra</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Torcedor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Torcedor.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ingresso)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ingresso.Id)
+        </dd>
     </dl>
     
     <form asp-action="Delete">
