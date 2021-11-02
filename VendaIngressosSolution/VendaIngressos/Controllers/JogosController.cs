@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using VendaIngressos.Data;
 
 namespace VendaIngressos.Controllers
 {
+    [Authorize]
     public class JogosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,7 +24,7 @@ namespace VendaIngressos.Controllers
         // GET: Jogos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Jogo.ToListAsync());
+            return View(await _context.Jogo.Include(a => a.TimeA).Include(b => b.TimeB).ToListAsync());
         }
 
         // GET: Jogos/Details/5
@@ -46,7 +48,24 @@ namespace VendaIngressos.Controllers
         // GET: Jogos/Create
         public IActionResult Create()
         {
-            return View();
+            var j = new Jogo();
+            var timesA = _context.Time.ToList();
+            var timesB = _context.Time.ToList();
+
+            j.TimesA = new List<SelectListItem>();
+            j.TimesB = new List<SelectListItem>();
+
+            foreach (var a in timesA)
+            {
+                j.TimesA.Add(new SelectListItem { Text = a.NomeTime, Value = a.Id.ToString() });
+            }
+
+            foreach (var b in timesB)
+            {
+                j.TimesB.Add(new SelectListItem { Text = b.NomeTime, Value = b.Id.ToString() });
+            }
+
+            return View(j);
         }
 
         // POST: Jogos/Create
@@ -56,6 +75,14 @@ namespace VendaIngressos.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,NomeEstadio,DataJogo")] Jogo jogo)
         {
+            int _timeAId = int.Parse(Request.Form["TimeA"].ToString());
+            var timeA = _context.Time.FirstOrDefault(t => t.Id == _timeAId);
+            jogo.TimeA = timeA;
+
+            int _timeBId = int.Parse(Request.Form["TimeB"].ToString());
+            var timeB = _context.Time.FirstOrDefault(t => t.Id == _timeBId);
+            jogo.TimeB = timeB;
+
             if (ModelState.IsValid)
             {
                 _context.Add(jogo);
@@ -73,7 +100,27 @@ namespace VendaIngressos.Controllers
                 return NotFound();
             }
 
-            var jogo = await _context.Jogo.FindAsync(id);
+            var jogo = _context.Jogo.Include(t => t.TimeA).First(e => e.Id == id);
+            var timesA = _context.Time.ToList();
+            jogo.TimesA = new List<SelectListItem>();
+
+            foreach (var a in timesA)
+            {
+                jogo.TimesA.Add(new SelectListItem { Text = a.NomeTime, Value = a.Id.ToString() });
+            }
+
+            //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            jogo = _context.Jogo.Include(t => t.TimeB).First(e => e.Id == id);
+            var timesB = _context.Time.ToList();
+            jogo.TimesB = new List<SelectListItem>();
+
+            foreach (var b in timesB)
+            {
+                jogo.TimesB.Add(new SelectListItem { Text = b.NomeTime, Value = b.Id.ToString() });
+            }
+
+            //var jogo = await _context.Jogo.FindAsync(id);
             if (jogo == null)
             {
                 return NotFound();
@@ -92,6 +139,14 @@ namespace VendaIngressos.Controllers
             {
                 return NotFound();
             }
+
+            int _timeAId = int.Parse(Request.Form["TimeA"].ToString());
+            var timeA = _context.Time.FirstOrDefault(a => a.Id == _timeAId);
+            jogo.TimeA = timeA;
+
+            int _timeBId = int.Parse(Request.Form["TimeB"].ToString());
+            var timeB = _context.Time.FirstOrDefault(b => b.Id == _timeBId);
+            jogo.TimeB = timeB;
 
             if (ModelState.IsValid)
             {

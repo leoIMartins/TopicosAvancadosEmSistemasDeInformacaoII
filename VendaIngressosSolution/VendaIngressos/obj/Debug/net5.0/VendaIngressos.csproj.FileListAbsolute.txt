@@ -177,3 +177,8 @@ C:\TopicosAvancadosEmSistemasDeInformacaoII\VendaIngressosSolution\VendaIngresso
 C:\TopicosAvancadosEmSistemasDeInformacaoII\VendaIngressosSolution\VendaIngressos\obj\Debug\net5.0\Razor\Views\Ingressos\Details.cshtml.g.cs
 C:\TopicosAvancadosEmSistemasDeInformacaoII\VendaIngressosSolution\VendaIngressos\obj\Debug\net5.0\Razor\Views\Ingressos\Edit.cshtml.g.cs
 C:\TopicosAvancadosEmSistemasDeInformacaoII\VendaIngressosSolution\VendaIngressos\obj\Debug\net5.0\Razor\Views\Ingressos\Index.cshtml.g.cs
+C:\TopicosAvancadosEmSistemasDeInformacaoII\VendaIngressosSolution\VendaIngressos\obj\Debug\net5.0\Razor\Views\Compra\Create.cshtml.g.cs
+C:\TopicosAvancadosEmSistemasDeInformacaoII\VendaIngressosSolution\VendaIngressos\obj\Debug\net5.0\Razor\Views\Compra\Delete.cshtml.g.cs
+C:\TopicosAvancadosEmSistemasDeInformacaoII\VendaIngressosSolution\VendaIngressos\obj\Debug\net5.0\Razor\Views\Compra\Details.cshtml.g.cs
+C:\TopicosAvancadosEmSistemasDeInformacaoII\VendaIngressosSolution\VendaIngressos\obj\Debug\net5.0\Razor\Views\Compra\Edit.cshtml.g.cs
+C:\TopicosAvancadosEmSistemasDeInformacaoII\VendaIngressosSolution\VendaIngressos\obj\Debug\net5.0\Razor\Views\Compra\Index.cshtml.g.cs

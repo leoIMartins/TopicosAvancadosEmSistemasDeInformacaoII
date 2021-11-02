@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using VendaIngressos.Data;
 
 namespace VendaIngressos.Controllers
 {
+    [Authorize]
     public class CompraController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,7 +24,7 @@ namespace VendaIngressos.Controllers
         // GET: Compra
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Compra.ToListAsync());
+            return View(await _context.Compra.Include(t => t.Torcedor).Include(i => i.Ingresso).ToListAsync());
         }
 
         // GET: Compra/Details/5
@@ -46,7 +48,24 @@ namespace VendaIngressos.Controllers
         // GET: Compra/Create
         public IActionResult Create()
         {
-            return View();
+            var c = new Compra();
+            var torcedores = _context.Torcedor.ToList();
+            var ingressos = _context.Ingresso.ToList();
+
+            c.Torcedores = new List<SelectListItem>();
+            c.Ingressos = new List<SelectListItem>();
+
+            foreach (var t in torcedores)
+            {
+                c.Torcedores.Add(new SelectListItem { Text = t.Nome, Value = t.Id.ToString() });
+            }
+
+            foreach (var i in ingressos)
+            {
+                c.Ingressos.Add(new SelectListItem { Text = i.Jogo.TimeA.NomeTime + " x " + i.Jogo.TimeB.NomeTime, Value = i.Id.ToString() });
+            }
+
+            return View(c);
         }
 
         // POST: Compra/Create
@@ -56,6 +75,14 @@ namespace VendaIngressos.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id")] Compra compra)
         {
+            int _torcedorId = int.Parse(Request.Form["Torcedor"].ToString());
+            var torcedor = _context.Torcedor.FirstOrDefault(t => t.Id == _torcedorId);
+            compra.Torcedor = torcedor;
+
+            int _ingressoId = int.Parse(Request.Form["Ingresso"].ToString());
+            var ingresso = _context.Ingresso.FirstOrDefault(i => i.Id == _ingressoId);
+            compra.Ingresso = ingresso;
+
             if (ModelState.IsValid)
             {
                 _context.Add(compra);
@@ -73,7 +100,27 @@ namespace VendaIngressos.Controllers
                 return NotFound();
             }
 
-            var compra = await _context.Compra.FindAsync(id);
+            var compra = _context.Compra.Include(t => t.Torcedor).First(e => e.Id == id);
+            var torcedores = _context.Torcedor.ToList();
+            compra.Torcedores = new List<SelectListItem>();
+
+            foreach (var t in torcedores)
+            {
+                compra.Torcedores.Add(new SelectListItem { Text = t.Nome, Value = t.Id.ToString() });
+            }
+
+            //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            compra = _context.Compra.Include(i => i.Ingresso).First(e => e.Id == id);
+            var ingressos = _context.Ingresso.ToList();
+            compra.Ingressos = new List<SelectListItem>();
+
+            foreach (var i in ingressos)
+            {
+                compra.Ingressos.Add(new SelectListItem { Text = i.Jogo.TimeA.NomeTime + " x " + i.Jogo.TimeB.NomeTime, Value = i.Id.ToString() });
+            }
+
+            //var compra = await _context.Compra.FindAsync(id);
             if (compra == null)
             {
                 return NotFound();
@@ -92,6 +139,14 @@ namespace VendaIngressos.Controllers
             {
                 return NotFound();
             }
+
+            int _torcedorId = int.Parse(Request.Form["Torcedor"].ToString());
+            var torcedor = _context.Torcedor.FirstOrDefault(t => t.Id == _torcedorId);
+            compra.Torcedor = torcedor;
+
+            int _ingressoId = int.Parse(Request.Form["Ingresso"].ToString());
+            var ingresso = _context.Ingresso.FirstOrDefault(i => i.Id == _ingressoId);
+            compra.Ingresso = ingresso;
 
             if (ModelState.IsValid)
             {
