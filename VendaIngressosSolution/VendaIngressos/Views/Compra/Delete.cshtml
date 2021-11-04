@@ -21,7 +21,16 @@
             @Html.DisplayNameFor(model => model.Ingresso)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Ingresso.Id)
+            R$
+            @Html.DisplayFor(model => model.Ingresso.Preco)
+            -
+            @Html.DisplayFor(model => model.Ingresso.Jogo.TimeA.NomeTime)
+            x
+            @Html.DisplayFor(model => model.Ingresso.Jogo.TimeB.NomeTime)
+            -
+            @Html.DisplayFor(model => model.Ingresso.Jogo.NomeEstadio)
+            -
+            @Html.DisplayFor(model => model.Ingresso.Setor)
         </dd>
     </dl>
     

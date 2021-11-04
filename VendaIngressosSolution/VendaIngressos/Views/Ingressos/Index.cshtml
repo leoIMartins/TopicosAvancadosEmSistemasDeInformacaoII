@@ -31,13 +31,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                R$
                 @Html.DisplayFor(modelItem => item.Preco)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Setor)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Jogo.ToString())
+                @Html.DisplayFor(modelItem => item.Jogo.TimeA.NomeTime)
+                x
+                @Html.DisplayFor(modelItem => item.Jogo.TimeB.NomeTime)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Imagem)

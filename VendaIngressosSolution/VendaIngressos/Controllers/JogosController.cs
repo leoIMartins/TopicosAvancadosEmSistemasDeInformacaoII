@@ -35,7 +35,7 @@ namespace VendaIngressos.Controllers
                 return NotFound();
             }
 
-            var jogo = await _context.Jogo
+            var jogo = await _context.Jogo.Include(a => a.TimeA).Include(b => b.TimeB)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (jogo == null)
             {
@@ -179,7 +179,7 @@ namespace VendaIngressos.Controllers
                 return NotFound();
             }
 
-            var jogo = await _context.Jogo
+            var jogo = await _context.Jogo.Include(a => a.TimeA).Include(b => b.TimeB)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (jogo == null)
             {

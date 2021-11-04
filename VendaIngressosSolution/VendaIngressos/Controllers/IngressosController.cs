@@ -28,7 +28,7 @@ namespace VendaIngressos.Controllers
         // GET: Ingressos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Ingresso.Include(j => j.Jogo).ToListAsync());
+            return View(await _context.Ingresso.Include(j => j.Jogo).Include(j => j.Jogo.TimeA).Include(j => j.Jogo.TimeB).ToListAsync());
         }
 
         // GET: Ingressos/Details/5
@@ -39,7 +39,7 @@ namespace VendaIngressos.Controllers
                 return NotFound();
             }
 
-            var ingresso = await _context.Ingresso
+            var ingresso = await _context.Ingresso.Include(j => j.Jogo).Include(j => j.Jogo.TimeA).Include(j => j.Jogo.TimeB)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (ingresso == null)
             {
@@ -105,7 +105,7 @@ namespace VendaIngressos.Controllers
             }
 
             var ingresso = _context.Ingresso.Include(j => j.Jogo).First(i => i.Id == id);
-            var jogos = _context.Jogo.ToList();
+            var jogos = _context.Jogo.Include(a => a.TimeA).Include(b => b.TimeB).ToList();
             ingresso.Jogos = new List<SelectListItem>();
 
             foreach (var j in jogos)
@@ -224,7 +224,7 @@ namespace VendaIngressos.Controllers
                 return NotFound();
             }
 
-            var ingresso = await _context.Ingresso
+            var ingresso = await _context.Ingresso.Include(a => a.Jogo.TimeA).Include(b => b.Jogo.TimeB)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (ingresso == null)
             {

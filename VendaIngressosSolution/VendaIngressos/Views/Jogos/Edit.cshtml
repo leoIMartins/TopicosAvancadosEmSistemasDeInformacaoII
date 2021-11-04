@@ -16,14 +16,14 @@
             <div class="form-group">
                 <label asp-for="TimeA" class="control-label"></label>
                 <select asp-for="TimeA" id="TimeA" name="TimeA" asp-items="@Model.TimesA" class="form-control">
-                    <option>@Model.TimeA.ToString()</option>
+                    <option>@Model.TimeA.NomeTime</option>
                 </select>
                 <span asp-validation-for="TimeA" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TimeB" class="control-label"></label>
                 <select asp-for="TimeB" id="TimeB" name="TimeB" asp-items="@Model.TimesB" class="form-control">
-                    <option>@Model.TimeB.ToString()</option>
+                    <option>@Model.TimeB.NomeTime</option>
                 </select>
                 <span asp-validation-for="TimeB" class="text-danger"></span>
             </div>

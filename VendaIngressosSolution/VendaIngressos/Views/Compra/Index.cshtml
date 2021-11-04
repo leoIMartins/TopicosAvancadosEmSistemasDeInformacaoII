@@ -27,7 +27,17 @@
                 @Html.DisplayFor(modelItem => item.Torcedor.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Ingresso.Id)
+                R$
+                @Html.DisplayFor(modelItem => item.Ingresso.Preco)
+                -
+                @Html.DisplayFor(modelItem => item.Ingresso.Jogo.TimeA.NomeTime)
+                x
+                @Html.DisplayFor(modelItem => item.Ingresso.Jogo.TimeB.NomeTime)
+                -
+                @Html.DisplayFor(modelItem => item.Ingresso.Jogo.NomeEstadio)
+                -
+                @Html.DisplayFor(modelItem => item.Ingresso.Setor)
+
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

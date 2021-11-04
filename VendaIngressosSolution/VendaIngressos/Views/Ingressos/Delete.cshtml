@@ -15,6 +15,7 @@
             @Html.DisplayNameFor(model => model.Preco)
         </dt>
         <dd class="col-sm-10">
+            R$
             @Html.DisplayFor(model => model.Preco)
         </dd>
         <dt class="col-sm-2">
@@ -27,7 +28,9 @@
             @Html.DisplayNameFor(model => model.Jogo)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Jogo.ToString())
+            @Html.DisplayFor(model => model.Jogo.TimeA.NomeTime)
+            x
+            @Html.DisplayFor(model => model.Jogo.TimeB.NomeTime)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Imagem)

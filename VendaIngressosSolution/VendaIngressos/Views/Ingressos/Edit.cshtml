@@ -26,7 +26,7 @@
             <div class="form-group">
                 <label asp-for="Jogo" class="control-label"></label>
                 <select asp-for="Jogo" id="Jogo" name="Jogo" asp-items="@Model.Jogos" class="form-control">
-                    <option>@Model.Jogo.ToString()</option>
+                    <option>@Model.Jogo.TimeA.NomeTime x @Model.Jogo.TimeB.NomeTime</option>
                 </select>
                 <span asp-validation-for="Jogo" class="text-danger"></span>
             </div>

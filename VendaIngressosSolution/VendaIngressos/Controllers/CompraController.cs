@@ -24,7 +24,9 @@ namespace VendaIngressos.Controllers
         // GET: Compra
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Compra.Include(t => t.Torcedor).Include(i => i.Ingresso).ToListAsync());
+            return View(await _context.Compra.Include(t => t.Torcedor).Include(i => i.Ingresso)
+                .Include(j => j.Ingresso.Jogo).Include(a => a.Ingresso.Jogo.TimeA)
+                .Include(b => b.Ingresso.Jogo.TimeB).ToListAsync());
         }
 
         // GET: Compra/Details/5
@@ -35,8 +37,9 @@ namespace VendaIngressos.Controllers
                 return NotFound();
             }
 
-            var compra = await _context.Compra
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var compra = await _context.Compra.Include(t => t.Torcedor)
+                .Include(j => j.Ingresso.Jogo).Include(j => j.Ingresso.Jogo.TimeA)
+                .Include(j => j.Ingresso.Jogo.TimeB).FirstOrDefaultAsync(m => m.Id == id);
             if (compra == null)
             {
                 return NotFound();
@@ -50,7 +53,8 @@ namespace VendaIngressos.Controllers
         {
             var c = new Compra();
             var torcedores = _context.Torcedor.ToList();
-            var ingressos = _context.Ingresso.ToList();
+            var ingressos = _context.Ingresso.Include(j => j.Jogo)
+                .Include(j => j.Jogo.TimeA).Include(j => j.Jogo.TimeB).ToList();
 
             c.Torcedores = new List<SelectListItem>();
             c.Ingressos = new List<SelectListItem>();
@@ -62,7 +66,9 @@ namespace VendaIngressos.Controllers
 
             foreach (var i in ingressos)
             {
-                c.Ingressos.Add(new SelectListItem { Text = i.Jogo.TimeA.NomeTime + " x " + i.Jogo.TimeB.NomeTime, Value = i.Id.ToString() });
+                c.Ingressos.Add(new SelectListItem { Text = "R$" + i.Preco + " - " 
+                    + i.Jogo.TimeA.NomeTime + " x " + i.Jogo.TimeB.NomeTime + " - "
+                    + i.Jogo.NomeEstadio + " - " + i.Setor, Value = i.Id.ToString() });
             }
 
             return View(c);
@@ -112,12 +118,15 @@ namespace VendaIngressos.Controllers
             //////////////////////////////////////////////////////////////////////////////////////////////////////
 
             compra = _context.Compra.Include(i => i.Ingresso).First(e => e.Id == id);
-            var ingressos = _context.Ingresso.ToList();
+            var ingressos = _context.Ingresso.Include(j => j.Jogo).Include(j => j.Jogo.TimeA)
+                .Include(j => j.Jogo.TimeB).ToList();
             compra.Ingressos = new List<SelectListItem>();
 
             foreach (var i in ingressos)
             {
-                compra.Ingressos.Add(new SelectListItem { Text = i.Jogo.TimeA.NomeTime + " x " + i.Jogo.TimeB.NomeTime, Value = i.Id.ToString() });
+                compra.Ingressos.Add(new SelectListItem { Text = "R$" + i.Preco + " - "
+                    + i.Jogo.TimeA.NomeTime + " x " + i.Jogo.TimeB.NomeTime + " - "
+                    + i.Jogo.NomeEstadio + " - " + i.Setor, Value = i.Id.ToString() });
             }
 
             //var compra = await _context.Compra.FindAsync(id);
@@ -179,7 +188,9 @@ namespace VendaIngressos.Controllers
                 return NotFound();
             }
 
-            var compra = await _context.Compra
+            var compra = await _context.Compra.Include(t => t.Torcedor)
+                .Include(j => j.Ingresso.Jogo).Include(j => j.Ingresso.Jogo.TimeA)
+                .Include(j => j.Ingresso.Jogo.TimeB)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (compra == null)
             {
