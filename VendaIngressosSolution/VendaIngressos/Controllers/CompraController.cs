@@ -66,9 +66,12 @@ namespace VendaIngressos.Controllers
 
             foreach (var i in ingressos)
             {
-                c.Ingressos.Add(new SelectListItem { Text = "R$" + i.Preco + " - " 
+                if (i.Status == "Disponível")
+                {
+                    c.Ingressos.Add(new SelectListItem { Text = "R$" + i.Preco + " - " 
                     + i.Jogo.TimeA.NomeTime + " x " + i.Jogo.TimeB.NomeTime + " - "
                     + i.Jogo.NomeEstadio + " - " + i.Setor, Value = i.Id.ToString() });
+                }
             }
 
             return View(c);
@@ -87,6 +90,9 @@ namespace VendaIngressos.Controllers
 
             int _ingressoId = int.Parse(Request.Form["Ingresso"].ToString());
             var ingresso = _context.Ingresso.FirstOrDefault(i => i.Id == _ingressoId);
+            //Regra de negócio alterar status do ingresso para "Vendido"
+            ingresso.Status = "Vendido";
+            //Fim da regra de negócio
             compra.Ingresso = ingresso;
 
             if (ModelState.IsValid)

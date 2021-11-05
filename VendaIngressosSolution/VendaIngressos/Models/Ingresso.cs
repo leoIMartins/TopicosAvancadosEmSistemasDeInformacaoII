@@ -29,5 +29,7 @@ namespace ProjIngresso.Models
         [NotMapped]
         [DisplayName("Imagem do Ingresso")]
         public IFormFile ImagemIngresso { get; set; }
+
+        public string Status { get; set; }
     }
 }

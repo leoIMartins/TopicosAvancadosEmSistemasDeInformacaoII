@@ -75,6 +75,9 @@ namespace VendaIngressos.Controllers
             int _jogoId = int.Parse(Request.Form["Jogo"].ToString());
             var jogo = _context.Jogo.FirstOrDefault(j => j.Id == _jogoId);
             ingresso.Jogo = jogo;
+            //Regra de negócio do status do In
+            ingresso.Status = "Disponível";
+            //Fim da regra de negócio
 
             if (ModelState.IsValid)
             {
