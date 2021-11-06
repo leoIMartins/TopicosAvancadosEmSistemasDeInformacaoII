@@ -61,7 +61,8 @@ namespace VendaIngressos.Controllers
 
             foreach (var t in torcedores)
             {
-                c.Torcedores.Add(new SelectListItem { Text = t.Nome, Value = t.Id.ToString() });
+                if(t.Idade >= 18)
+                    c.Torcedores.Add(new SelectListItem { Text = t.Nome, Value = t.Id.ToString() });
             }
 
             foreach (var i in ingressos)
