@@ -4,10 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Compras</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">
+        <input type="submit" value="Comprar Ingresso" class="btn btn-dark" />
+    </a>
 </p>
 <table class="table">
     <thead>
@@ -21,30 +23,37 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Torcedor.Nome)
-            </td>
-            <td>
-                R$
-                @Html.DisplayFor(modelItem => item.Ingresso.Preco)
-                -
-                @Html.DisplayFor(modelItem => item.Ingresso.Jogo.TimeA.NomeTime)
-                x
-                @Html.DisplayFor(modelItem => item.Ingresso.Jogo.TimeB.NomeTime)
-                -
-                @Html.DisplayFor(modelItem => item.Ingresso.Jogo.NomeEstadio)
-                -
-                @Html.DisplayFor(modelItem => item.Ingresso.Setor)
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Torcedor.Nome)
+                </td>
+                <td>
+                    R$
+                    @Html.DisplayFor(modelItem => item.Ingresso.Preco)
+                    -
+                    @Html.DisplayFor(modelItem => item.Ingresso.Jogo.TimeA.NomeTime)
+                    x
+                    @Html.DisplayFor(modelItem => item.Ingresso.Jogo.TimeB.NomeTime)
+                    -
+                    @Html.DisplayFor(modelItem => item.Ingresso.Jogo.NomeEstadio)
+                    -
+                    @Html.DisplayFor(modelItem => item.Ingresso.Setor)
 
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">
+                        <input type="submit" value="Editar" class="btn btn-secondary" />
+                    </a>
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        <input type="submit" value="Detalhes" class="btn btn-info" />
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">
+                        <input type="submit" value="Excluir" class="btn btn-danger" />
+                    </a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
