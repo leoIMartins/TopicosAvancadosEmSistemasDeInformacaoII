@@ -5,12 +5,20 @@
 }
 
 <h1>Compras</h1>
-
-<p>
-    <a asp-action="Create">
-        <input type="submit" value="Comprar Ingresso" class="btn btn-dark" />
-    </a>
-</p>
+@if (ViewBag.liberarVenda == true)
+{
+    <p>
+        <a asp-action="Create">
+            <input type="submit" value="Comprar Ingresso" class="btn btn-dark" />
+        </a>
+    </p>
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        Não existem ingressos à venda neste momento!
+    </div>
+}
 <table class="table">
     <thead>
         <tr>

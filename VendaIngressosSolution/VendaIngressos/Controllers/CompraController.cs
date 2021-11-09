@@ -24,6 +24,19 @@ namespace VendaIngressos.Controllers
         // GET: Compra
         public async Task<IActionResult> Index()
         {
+            //Regra de negócio exibir botão de compra ou alerta
+            var ingressos = _context.Ingresso.Include(j => j.Jogo)
+                .Include(j => j.Jogo.TimeA).Include(j => j.Jogo.TimeB).ToList();
+
+            foreach (var i in ingressos)
+            {
+                if (i.Status == "Disponível")
+                {
+                    ViewBag.liberarVenda = true;
+                }
+            }
+            //Fim regra de negócio
+
             return View(await _context.Compra.Include(t => t.Torcedor).Include(i => i.Ingresso)
                 .Include(j => j.Ingresso.Jogo).Include(a => a.Ingresso.Jogo.TimeA)
                 .Include(b => b.Ingresso.Jogo.TimeB).ToListAsync());
@@ -212,7 +225,14 @@ namespace VendaIngressos.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var compra = await _context.Compra.FindAsync(id);
+            //Regra de negócio devolver status "Disponível" ao ingresso cuja compra foi excluída
+            var ListaCompras = await _context.Compra.Include(t => t.Torcedor).Include(i => i.Ingresso).ToListAsync();
+            var compra = ListaCompras.FirstOrDefault(e => e.Id == id);
+            int _ingressoId = compra.Ingresso.Id;
+            var ListaIngressos = await _context.Ingresso.Include(j => j.Jogo).ToListAsync();
+            var ingresso = ListaIngressos.FirstOrDefault(e => e.Id == _ingressoId);
+            ingresso.Status = "Disponível";
+            //Fim da regra de negócio
             _context.Compra.Remove(compra);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
